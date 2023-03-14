@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastra Evento</title>
+    <script src="cadastra_evento.js"></script>
+</head>
+<body>
+    <h1>Seja Bem-Vindo!</h1>
+    <h2>Preparamos uma lista com vários eventos para você participar, realize o seu cadastro abaixo e verifique a lista completa de eventos:</h2>
+    <form action="">
+        <p>
+            <label for="l_nome">Nome Completo</nav></label>
+            <input type="text" name="nome" id="nome">
+        </p>
+        <p>
+            <label for="l_cpf">CPF</label>
+            <input type="text" name="cpf" id="cpf">
+        </p>
+        <p>
+            <label for="l_nascimento">Data de Nascimento</label>
+            <input type="date" name="nascimento" id="nascimento">
+        </p>
+        <p>
+            <label for="l_evento">Data do Evento</label>
+            <input type="date" name="evento" id="evento">
+        </p>
+        <p>
+            <label for="l_n_evento">Nome do Evento</label>
+            <select name="n_evento" id="n_evento">
+                <option value="logica_programacao">Lógica de Programação</option>
+
+            </select>
+        </p>    
+    </form>
+    <input type="button" name="cadastrar" id="cadastrar" value="Cadastrar" onclick="validarForm()">
+
+    
+    <!-- MOSTRAR AQUI O CADASTRO NO EVENTO -->
+
+</body>
+</html>
