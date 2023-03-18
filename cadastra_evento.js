@@ -3,6 +3,7 @@ function validarForm() {
     // Código de validação aqui
     validaDataEvento();
     validaDataNascimento();
+    let eventos = [];
     let registroEvento = { n_nome: "", c_cpf: "", n_nascimento: "", d_evento: "", no_evento: "" }
     registroEvento.n_nome = document.getElementById("nome").value;
     registroEvento.c_cpf = document.getElementById("cpf").value;
@@ -10,8 +11,23 @@ function validarForm() {
     registroEvento.d_evento = document.getElementById("evento").value;
     registroEvento.no_evento = document.getElementById("n_evento").value;
 
-    console.log(registroEvento);
+    // Verifica se já existe evento cadastrado.
+    if (sessionStorage.getItem("vetor_eventos")){
+        eventos = JSON.parse(sessionStorage.getItem("vetor_eventos"));
+    }
+
+    eventos.push(registroEvento);
+    sessionStorage.setItem("vetor_eventos", JSON.stringify(eventos));
+
+    console.log(eventos);
+    listar();
+    return true;
+   
 }
+
+
+
+
 
 function validaDataEvento() {
     let hoje = new Date(); //pega a data e hora atual
@@ -50,4 +66,41 @@ function validaDataNascimento() {
     } else {
         console.log("A pessoa é menor de idade");
     }
+}
+
+
+function listar(){
+    var dados = document.getElementById("colunas");
+    var registros = document.getElementsByTagName("tbody")[0];
+    var eventos = JSON.parse(sessionStorage.getItem("vetor_eventos"));
+    for (var i = 0; i < eventos.length; i++){
+        var novaLinha = document.createElement("tr"); // Criar uma tag tr na tabela que vai ser apresentado a lista de contatos do Vetor
+        registros.appendChild(novaLinha); // insere a tag tr criada
+        novaLinha.innerHTML = dados.innerHTML; // insere as colunas do id="colunas"
+
+        for (var indice in novaLinha.childNodes){   // Retorna os Nodes filhos da minha novaLinha
+            var celula = novaLinha.childNodes[indice]; // verificar a tag
+            if(celula.nodeName == "TD"){
+            switch(celula.dataset.column){
+                case "Nome":
+                    celula.innerHTML = eventos[i]["n_nome"];
+                    break;
+                case "CPF":
+                celula.innerHTML = eventos[i]["c_cpf"];
+                    break;
+                case "Nascimento":
+                celula.innerHTML = new Date(eventos[i]["n_nascimento"]).toLocaleDateString("pt-BR", { timeZone: 'UTC' });
+                    break;
+                case "Data do Evento":
+                        celula.innerHTML = new Date(eventos[i]["d_evento"]).toLocaleDateString("pt-BR", { timeZone: 'UTC' });
+                     break;
+                case "Evento":
+                         celula.innerHTML = eventos[i]["no_evento"];
+                     break;
+            }}
+        }
+
+
+    }
+
 }

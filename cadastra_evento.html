@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastra Evento</title>
     <script src="cadastra_evento.js"></script>
+    <script src="cadastra_evento.css"></script>
 </head>
 <body>
     <h1>Seja Bem-Vindo!</h1>
     <h2>Preparamos uma lista com vários eventos para você participar, realize o seu cadastro abaixo e verifique a lista completa de eventos:</h2>
-    <form action="">
+    <form>
         <p>
             <label for="l_nome">Nome Completo</nav></label>
             <input type="text" name="nome" id="nome">
@@ -28,17 +29,44 @@
             <input type="date" name="evento" id="evento">
         </p>
         <p>
-            <label for="l_n_evento">Nome do Evento</label>
+            <label for ="l_n_evento">Nome do Evento</label>
             <select name="n_evento" id="n_evento">
                 <option value="logica_programacao">Lógica de Programação</option>
 
             </select>
         </p>    
     </form>
-    <input type="button" name="cadastrar" id="cadastrar" value="Cadastrar" onclick="validarForm()">
+    <input type="submit" name="cadastrar" id="cadastrar" value="Cadastrar" onclick="validarForm()">
 
+    <br>
+    <br>
+    <br>
+    <br>
     
-    <!-- MOSTRAR AQUI O CADASTRO NO EVENTO -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Nascimento</th>
+                <th>Data do Evento</th>
+                <th>Evento</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script id="colunas" type="text/x-jsrender">
+        
+        <td data-column="Nome"></td>
+        <td data-column="CPF"></td>
+        <td data-column="Nascimento"></td>
+        <td data-column="Data do Evento"></td>
+        <td data-column="Evento"></td>
+    </script>
+       
 
 </body>
 </html>
